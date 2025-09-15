@@ -83,8 +83,8 @@
 	grid-template-columns: repeat(--value(integer), auto);
 }
 
-@utility color-danger {
-	@apply text-red-700 dark:text-red-400;
+@utility warning {
+	@apply text-red-700 dark:text-yellow-300;
 }
 
 @custom-variant any-hover {
