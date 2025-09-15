@@ -1,0 +1,30 @@
+---
+import '../styles/global.css';
+type Props = {
+  frontmatter: {
+    title: string;
+    desc: string;
+  };
+};
+const { frontmatter } = Astro.props;
+---
+
+<html lang='ja'>
+  <head>
+    <meta charset='utf-8' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.ico' />
+    <meta name='viewport' content='width=device-width,initial-scale=1' />
+    <meta property='og:title' content=`${frontmatter.title} - 終末式ローマ字` />
+    <meta name='twitter:title' content=`${frontmatter.title} - 終末式ローマ字` />
+    <meta name='description' content={frontmatter.desc} />
+    <meta property='og:description' content={frontmatter.desc} />
+    <meta name='twitter:description' content={frontmatter.desc} />
+    <meta property='og:type' content='article' />
+    <meta name='generator' content={Astro.generator} />
+    <title>終末式ローマ字</title>
+  </head>
+  <body>
+    <h1>{frontmatter.title}</h1>
+    <slot />
+  </body>
+</html>
