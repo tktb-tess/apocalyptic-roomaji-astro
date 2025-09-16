@@ -4,13 +4,12 @@ title: 例文集
 desc: れいぶん♡
 ---
 
-
-
 [戻る](/.)
 
 ## 短文
 
-- 東欧を覆う鳳凰の王の尾を往々追おう。<br>Toğouwó oĥoĥǘ hoğwáğnǫ̀ wáğnǫ̀ wówo wağwağ oĥám̆.
+- 東欧を覆う鳳凰の王の尾を往々追おう。
+  Toğouwó oĥoĥǘ hoğwáğnǫ̀ wáğnǫ̀ wówo wağwağ oĥám̆.
 
 ## 「世界人権宣言 第一条」«Sékai˼zinkenséngen dái itídyeu»
 

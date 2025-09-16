@@ -8,6 +8,4 @@ desc: かんごー
 
 [戻る](/.)
 
-Paragraph 1
-
-Paragraph 2
+工事中……

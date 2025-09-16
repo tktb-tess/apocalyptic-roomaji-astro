@@ -7,6 +7,5 @@ desc: わごー
 
 [戻る](/.)
 
-Paragraph 1
+工事中……
 
-Paragraph 2

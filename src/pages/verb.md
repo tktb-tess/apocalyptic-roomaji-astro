@@ -4,11 +4,7 @@ title: 動詞
 desc: どーしー
 ---
 
+[戻る](/.)
 
-# { title }
+工事中……
 
-## h2
-
-Paragraph 1
-
-Paragraph 2
