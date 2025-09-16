@@ -1,12 +1,12 @@
 {
   "name": "apocalyptic-roomaji-astro",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "start": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
@@ -15,9 +15,6 @@
     "@tailwindcss/vite": "^4.1.13",
     "astro": "^5.13.7",
     "tailwindcss": "^4.1.13"
-  },
-  "engines": {
-    "node": "^22"
   },
   "packageManager": "pnpm@10.16.0",
   "volta": {
