@@ -8,7 +8,10 @@ type Props = {
   };
 };
 const { frontmatter } = Astro.props;
-const { title, desc, isIndex } = frontmatter;
+const { desc, isIndex } = frontmatter;
+const title = isIndex
+  ? frontmatter.title
+  : `${frontmatter.title} | 終末式ローマ字`;
 ---
 
 <html lang='ja'>
@@ -17,14 +20,8 @@ const { title, desc, isIndex } = frontmatter;
     <link rel='icon' type='image/svg+xml' href='/favicon.ico' />
     <meta name='viewport' content='width=device-width,initial-scale=1' />
     <!-- OGP -->
-    <meta
-      property='og:title'
-      content={isIndex ? title : `${title} | 終末式ローマ字`}
-    />
-    <meta
-      name='twitter:title'
-      content={isIndex ? title : `${title} | 終末式ローマ字`}
-    />
+    <meta property='og:title' content={title} />
+    <meta name='twitter:title' content={title} />
     <meta name='description' content={desc} />
     <meta property='og:description' content={desc} />
     <meta name='twitter:description' content={desc} />
