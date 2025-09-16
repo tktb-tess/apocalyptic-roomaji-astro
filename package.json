@@ -16,9 +16,6 @@
     "astro": "^5.13.7",
     "tailwindcss": "^4.1.13"
   },
-  "engines": {
-    "node": "^22"
-  },
   "packageManager": "pnpm@10.16.0",
   "volta": {
     "node": "22.19.0"
