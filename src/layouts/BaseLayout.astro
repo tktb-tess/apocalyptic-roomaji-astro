@@ -42,22 +42,19 @@ const title = isIndex
       href='https://api.tktb-tess.dev/fonts/Inter/font-face.css'
       crossorigin='anonymous'
     />
-    <link
-      rel='stylesheet'
-      href='https://api.tktb-tess.dev/fonts/Charis/font-face.css'
-      crossorigin='anonymous'
-    />
-
     <meta name='generator' content={Astro.generator} />
     <title>{title}</title>
   </head>
   <body class='flow-root bg-slate-50 dark:bg-slate-950'>
     <header>
-      <h1 id='title' class='text-center text-4xl md:text-5xl font-extralight my-12'>{frontmatter.title}</h1>
+      <h1
+        id='title'
+        class='text-center text-4xl md:text-5xl font-extralight my-12 dark:text-white'
+      >
+        {frontmatter.title}
+      </h1>
     </header>
-    <main
-      class=''
-    >
+    <main>
       <slot />
     </main>
   </body>
