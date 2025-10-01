@@ -5,10 +5,6 @@
   --font-sans: 'Inter-Variable', 'Arial', 'Helvetica Neue', 'Noto Sans JP',
     'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif,
     'Segoe UI', 'Yu Gothic UI', system-ui;
-  --font-serif: 'Charis-Web', 'Times New Roman', 'Noto Serif JP',
-    'BIZ UDPMincho', 'Hiragino Mincho', 'Hiragino Serif', serif, 'Segoe UI',
-    'Yu Gothic UI', system-ui;
-  --font-ipa: 'Charis-Web', 'Times New Roman', serif, system-ui;
 }
 
 @utility user-select-* {
