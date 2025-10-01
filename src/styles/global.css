@@ -2,42 +2,47 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-	--font-sans:
-		'Inter-Variable', 'Arial', 'Helvetica Neue', 'Noto Sans JP', 'BIZ UDPGothic',
-		'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif, 'Segoe UI', 'Yu Gothic UI', system-ui;
-	--font-serif:
-		'Charis-Web', 'Times New Roman', 'Noto Serif JP', 'BIZ UDPMincho', 'Hiragino Mincho',
-		'Hiragino Serif', serif, 'Segoe UI', 'Yu Gothic UI', system-ui;
-	--font-ipa: 'Charis-Web', 'Times New Roman', serif, system-ui;
+  --font-sans: 'Inter-Variable', 'Arial', 'Helvetica Neue', 'Noto Sans JP',
+    'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif,
+    'Segoe UI', 'Yu Gothic UI', system-ui;
+  --font-serif: 'Charis-Web', 'Times New Roman', 'Noto Serif JP',
+    'BIZ UDPMincho', 'Hiragino Mincho', 'Hiragino Serif', serif, 'Segoe UI',
+    'Yu Gothic UI', system-ui;
+  --font-ipa: 'Charis-Web', 'Times New Roman', serif, system-ui;
 }
 
 @utility user-select-* {
-	user-select: --value('none', 'auto', 'all', 'text');
-	-webkit-user-select: --value('none', 'auto', 'all', 'text');
+  user-select: --value('none', 'auto', 'all', 'text');
+  -webkit-user-select: --value('none', 'auto', 'all', 'text');
 }
 
 @utility table-container {
-	@apply overflow-x-auto my-8;
-	scrollbar-width: thin;
+  @apply overflow-x-auto my-8;
+  scrollbar-width: thin;
 }
 
 @utility link-disabled {
-	@apply pointer-events-none text-neutral-600 any-hover:no-underline;
+  @apply pointer-events-none text-neutral-600 any-hover:no-underline;
 }
 
 @utility grid-cols-auto-* {
-	grid-template-columns: repeat(--value(integer), auto);
+  grid-template-columns: repeat(--value(integer), auto);
 }
 
 @utility warning {
-	@apply text-red-700 dark:text-yellow-300;
+  @apply text-red-700 dark:text-yellow-300;
 }
 
 @custom-variant any-hover {
-	&:hover {
-		@media (any-hover: hover) {
-			@slot;
-		}
-	}
+  &:hover {
+    @media (any-hover: hover) {
+      @slot;
+    }
+  }
 }
 
+@layer base {
+  main {
+    @apply w-full max-w-320 mx-auto px-4 prose dark:prose-invert prose-sm md:prose-base prose-h2:border-b-3 prose-h2:border-double prose-h2:ps-1 prose-headings:font-normal prose-a:text-blue-700 dark:prose-a:text-cyan-400 prose-a:font-normal prose-a:any-hover:opacity-60;
+  }
+}

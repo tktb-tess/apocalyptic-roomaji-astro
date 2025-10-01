@@ -39,12 +39,12 @@ const title = isIndex
     <meta property='og:url' content='https://shuuro.tktb-tess.dev' />
     <link
       rel='stylesheet'
-      href='https://tktb-tess.github.io/resources/fonts/Inter/setting.css'
+      href='https://api.tktb-tess.dev/fonts/Inter/font-face.css'
       crossorigin='anonymous'
     />
     <link
       rel='stylesheet'
-      href='https://tktb-tess.github.io/resources/fonts/Charis/setting.css'
+      href='https://api.tktb-tess.dev/fonts/Charis/font-face.css'
       crossorigin='anonymous'
     />
 
@@ -52,13 +52,12 @@ const title = isIndex
     <title>{title}</title>
   </head>
   <body class='flow-root bg-slate-50 dark:bg-slate-950'>
+    <header>
+      <h1 id='title' class='text-center text-4xl md:text-5xl font-extralight my-12'>{frontmatter.title}</h1>
+    </header>
     <main
-      class='w-full max-w-320 mx-auto px-4 prose dark:prose-invert prose-sm md:prose-base 2xl:prose-lg
-    prose-h1:my-12 prose-h2:border-b-3 prose-h1:text-3xl md:prose-h1:text-5xl prose-h1:font-extralight
-    prose-h2:border-double prose-h2:ps-1 prose-headings:font-normal
-    prose-a:text-blue-700 dark:prose-a:text-cyan-400 prose-a:font-normal'
+      class=''
     >
-      <h1 id='title' class='text-center'>{frontmatter.title}</h1>
       <slot />
     </main>
   </body>
