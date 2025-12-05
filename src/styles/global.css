@@ -39,6 +39,6 @@
 
 @layer base {
   main {
-    @apply w-full max-w-320 mx-auto px-4 prose dark:prose-invert prose-sm md:prose-base prose-h2:border-b-3 prose-h2:border-double prose-h2:ps-1 prose-headings:font-normal prose-a:text-blue-700 dark:prose-a:text-cyan-400 prose-a:font-normal prose-a:any-hover:opacity-60;
+    @apply w-full max-w-7xl mx-auto px-4 prose dark:prose-invert prose-sm md:prose-base prose-h2:border-b-3 prose-h2:border-double prose-h2:ps-1 prose-headings:font-normal prose-a:text-blue-700 dark:prose-a:text-cyan-400 prose-a:font-normal prose-a:any-hover:opacity-60;
   }
 }

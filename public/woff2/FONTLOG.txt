@@ -1,6 +1,0 @@
------------------------------------------------------------
-FONTLOG
------------------------------------------------------------
-
-Akane Tokotoba converted “Charis SIL” and “Inter” to woff2 format.
-Nothing else has been changed.
