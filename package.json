@@ -10,11 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^9.0.2",
+    "@astrojs/vercel": "^9.0.4",
     "@tailwindcss/typography": "^0.5.19",
-    "@tailwindcss/vite": "^4.1.17",
-    "astro": "^5.16.4",
-    "tailwindcss": "^4.1.17"
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.17.1",
+    "tailwindcss": "^4.1.18"
   },
   "packageManager": "pnpm@10.27.0",
   "volta": {
