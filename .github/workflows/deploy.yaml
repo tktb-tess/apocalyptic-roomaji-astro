@@ -1,9 +1,9 @@
 name: Build Astro and Deploy to Pages
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
 
   workflow_dispatch:
 
