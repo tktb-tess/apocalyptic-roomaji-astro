@@ -31,6 +31,8 @@
   --w-sidebar-min: 16rem;
   --w-main-max: 80rem;
   --h-header: 10rem;
+  --area: 'header' 'main';
+  --area-lg: 'header header' 'sidebar main';
 }
 
 @utility user-select-* {
@@ -113,14 +115,17 @@
 
   body {
     @apply grid cbg-body ctext-txt;
-    grid-template-areas:
-      'header header'
-      'sidebar main';
-    grid-template-columns: minmax(min(var(--w-sidebar-min), 30%), 1fr) minmax(
-        0,
-        var(--w-main-max)
-      );
+
+    grid-template-areas: var(--area);
+    grid-template-columns: 100%;
     grid-template-rows: var(--h-header) 1fr;
+
+    @media (width >= 64rem) {
+      grid-template-areas: var(--area-lg);
+      grid-template-columns:
+        minmax(min(var(--w-sidebar-min), 30%), 1fr)
+        minmax(0, var(--w-main-max));
+    }
   }
 
   header {
@@ -129,11 +134,12 @@
   }
 
   aside {
+    @apply max-lg:hidden max-w-full;
     grid-area: sidebar;
   }
 
   main {
-    @apply flow-root min-h-lvh cbg-main px-3;
+    @apply flow-root min-h-lvh cbg-main px-3 max-w-full;
     grid-area: main;
   }
 
@@ -155,7 +161,7 @@
   }
 
   #title {
-    @apply text-4xl font-extralight text-balance;
+    @apply text-4xl font-extralight text-balance text-center;
   }
 
   h2 {
@@ -224,7 +230,7 @@
   }
 
   .table-container:has(> table) {
-    @apply overflow-x-auto my-8;
+    @apply overflow-x-auto my-(--m-figure);
     scrollbar-width: thin;
   }
 
