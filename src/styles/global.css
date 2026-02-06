@@ -1,20 +1,41 @@
 @import 'tailwindcss';
-@plugin '@tailwindcss/typography';
 
 @theme {
-  --font-sans: 'Inter-Variable', 'Arial', 'Helvetica Neue', 'Noto Sans JP',
+  --font-sans:
+    'Inter-Variable', 'Arial', 'Helvetica Neue', 'Noto Sans JP',
     'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif,
     'Segoe UI', 'Yu Gothic UI', system-ui;
+
+  --color-body: var(--color-slate-100);
+  --color-d-body: var(--color-slate-900);
+  --color-main: #fff;
+  --color-d-main: var(--color-slate-950);
+  --color-txt: #000;
+  --color-d-txt: #fff;
+  --color-txt-inv: #fff;
+  --color-d-txt-inv: #000;
+  --color-accent: var(--color-sky-800);
+  --color-d-accent: var(--color-sky-300);
+  --color-border: rgb(0 0 0 / 15%);
+  --color-border-dark: rgb(0 0 0 / 40%);
+  --color-d-border: rgb(255 255 255 / 15%);
+  --color-d-border-dark: rgb(255 255 255 / 30%);
+  --color-caution: var(--color-red-600);
+  --color-d-caution: var(--color-yellow-400);
+  --color-link: var(--color-blue-700);
+  --color-d-link: var(--color-sky-400);
+
+  --m-paragraph: 0.75rem;
+  --m-heading: 3rem;
+  --m-figure: 2rem;
+  --w-sidebar-min: 16rem;
+  --w-main-max: 80rem;
+  --h-header: 10rem;
 }
 
 @utility user-select-* {
   user-select: --value('none', 'auto', 'all', 'text');
   -webkit-user-select: --value('none', 'auto', 'all', 'text');
-}
-
-@utility table-container {
-  @apply overflow-x-auto my-8;
-  scrollbar-width: thin;
 }
 
 @utility link-disabled {
@@ -25,8 +46,18 @@
   grid-template-columns: repeat(--value(integer), auto);
 }
 
-@utility warning {
-  @apply text-red-700 dark:text-yellow-300;
+@utility grid-auto-fill-* {
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(calc(var(--spacing) * --value(integer)), 100%), 1fr)
+  );
+}
+
+@utility grid-auto-fit-* {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(calc(var(--spacing) * --value(integer)), 100%), 1fr)
+  );
 }
 
 @custom-variant any-hover {
@@ -37,9 +68,167 @@
   }
 }
 
+@utility ctext-* {
+  color: --value(--color-*);
+
+  @media (prefers-color-scheme: dark) {
+    color: --value(--color-d- *);
+  }
+}
+
+@utility cbg-* {
+  background-color: --value(--color-*);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: --value(--color-d- *);
+  }
+}
+
+@utility gbg-* {
+  background-image: --value(--grad-*);
+
+  @media (prefers-color-scheme: dark) {
+    background-image: --value(--grad-d- *);
+  }
+}
+
+@utility cborder-* {
+  border-color: --value(--color-*);
+
+  @media (prefers-color-scheme: dark) {
+    border-color: --value(--color-d- *);
+  }
+}
+
 @layer base {
-  #md-root {
-    @apply w-full max-w-7xl mx-auto px-4 prose dark:prose-invert prose-sm md:prose-base prose-h2:border-b-3 prose-h2:border-double
-    prose-h2:ps-1 prose-headings:font-normal prose-a:text-blue-700 dark:prose-a:text-cyan-400 prose-a:font-normal prose-a:any-hover:opacity-60;
+  :is(html, :root) {
+    @apply font-sans max-sm:text-sm hyphens-auto wrap-anywhere;
+    font-optical-sizing: auto;
+    line-break: strict;
+  }
+
+  :not(html, body, pre, code, input, textarea) {
+    @apply font-[inherit];
+  }
+
+  body {
+    @apply grid cbg-body ctext-txt;
+    grid-template-areas:
+      'header header'
+      'sidebar main';
+    grid-template-columns: minmax(min(var(--w-sidebar-min), 30%), 1fr) minmax(
+        0,
+        var(--w-main-max)
+      );
+    grid-template-rows: var(--h-header) 1fr;
+  }
+
+  header {
+    grid-area: header;
+    @apply grid place-content-center;
+  }
+
+  aside {
+    grid-area: sidebar;
+  }
+
+  main {
+    @apply flow-root min-h-lvh cbg-main px-3;
+    grid-area: main;
+  }
+
+  input:is([type='text'], [type='url'], [type='number']),
+  textarea {
+    @apply font-mono rounded cborder-border px-1;
+  }
+
+  :where(:not(li)) > :is(p, pre, ul, ol) {
+    @apply mt-(--m-paragraph);
+  }
+
+  :is(h2, h3, h4, h5, h6) {
+    @apply mt-(--m-heading) ctext-accent;
+  }
+
+  :is(h2, h3, h4) {
+    @apply font-normal;
+  }
+
+  #title {
+    @apply text-4xl font-extralight text-balance;
+  }
+
+  h2 {
+    @apply text-3xl ps-1 pb-1 border-b cborder-border;
+  }
+
+  h3 {
+    @apply text-2xl;
+  }
+
+  h4 {
+    @apply text-xl;
+  }
+
+  :is(h5, h6) {
+    @apply text-base font-semibold;
+  }
+
+  a {
+    @apply ctext-link any-hover:underline;
+  }
+
+  img,
+  .table-container {
+    @apply mt-(--m-figure);
+  }
+
+  img {
+    @apply mx-auto w-max max-w-full;
+  }
+
+  :is(ul, ol) {
+    @apply ps-7;
+  }
+
+  li > :is(ul, ol) {
+    @apply ps-4;
+  }
+
+  li > p {
+    @apply mt-0;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  table {
+    @apply whitespace-nowrap w-max max-w-full me-auto;
+
+    :where(td, th) {
+      @apply px-2 py-1;
+    }
+
+    :where(thead tr:last-child) {
+      @apply border-b-3 border-double cborder-border-dark;
+    }
+
+    :where(tbody tr:not(:last-child)) {
+      @apply border-b cborder-border;
+    }
+  }
+
+  .table-container:has(> table) {
+    @apply overflow-x-auto my-8;
+    scrollbar-width: thin;
+  }
+
+  :is(b, strong, th) {
+    @apply font-semibold;
   }
 }
