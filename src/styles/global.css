@@ -29,10 +29,12 @@
   --m-heading: 3rem;
   --m-figure: 2rem;
   --w-sidebar-min: 16rem;
-  --w-main-max: 80rem;
+  --w-main-max: 96rem;
   --h-header: 10rem;
-  --area: 'header' 'main';
-  --area-lg: 'header header' 'sidebar main';
+  --base-area: 'header header' 'sidebar main';
+  --base-cols: minmax(min(var(--w-sidebar-min), 30%), 1fr)
+    minmax(0, var(--w-main-max));
+  --base-rows: auto 1fr;
 }
 
 @utility user-select-* {
@@ -114,28 +116,18 @@
   }
 
   body {
-    @apply grid cbg-body ctext-txt;
-
-    grid-template-areas: var(--area);
-    grid-template-columns: 100%;
-    grid-template-rows: var(--h-header) 1fr;
-
-    @media (width >= 64rem) {
-      grid-template-areas: var(--area-lg);
-      grid-template-columns:
-        minmax(min(var(--w-sidebar-min), 30%), 1fr)
-        minmax(0, var(--w-main-max));
-    }
+    @apply max-lg:flow-root lg:grid cbg-body ctext-txt grid-cols-(--base-cols) grid-rows-(--base-rows);
+    grid-template-areas: var(--base-area);
   }
 
   header {
     grid-area: header;
-    @apply grid place-content-center;
+    @apply grid place-content-center h-(--h-header);
   }
 
   aside {
-    @apply max-lg:hidden max-w-full;
     grid-area: sidebar;
+    @apply max-lg:hidden max-w-full;
   }
 
   main {
