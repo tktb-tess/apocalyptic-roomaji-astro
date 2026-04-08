@@ -6,7 +6,7 @@ desc: 終わりのローマ字
 ---
 
 
-<p class="ctext-caution text-center font-semibold">※リニューアル中。このページの情報は古いかもしれないのであしからず。</p>
+<p class="text-caution text-center font-semibold">※リニューアル中。このページの情報は古いかもしれないのであしからず。</p>
 
 - 和語
   - 名詞（準備中）
