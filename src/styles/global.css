@@ -1,40 +1,46 @@
 @import 'tailwindcss';
 
+@font-face {
+  font-family: 'noto-sans-jp';
+  src: local('Noto Sans JP'), local('Noto Sans CJK JP');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'noto-sans-jp-for-title';
+  src: local('Noto Sans JP');
+  font-display: swap;
+}
+
 @theme {
   --font-sans:
-    'Inter-Variable', 'Arial', 'Helvetica Neue', 'Noto Sans JP',
+    'Inter-Variable', 'Arial', 'Helvetica Neue', 'noto-sans-jp',
     'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif,
     'Segoe UI', 'Yu Gothic UI', system-ui;
 
-  --color-body: var(--color-slate-100);
-  --color-d-body: var(--color-slate-900);
-  --color-main: #fff;
-  --color-d-main: var(--color-slate-950);
-  --color-txt: #000;
-  --color-d-txt: #fff;
-  --color-txt-inv: #fff;
-  --color-d-txt-inv: #000;
-  --color-accent: var(--color-sky-800);
-  --color-d-accent: var(--color-sky-300);
-  --color-border: rgb(0 0 0 / 15%);
-  --color-border-dark: rgb(0 0 0 / 40%);
-  --color-d-border: rgb(255 255 255 / 15%);
-  --color-d-border-dark: rgb(255 255 255 / 30%);
-  --color-caution: var(--color-red-600);
-  --color-d-caution: var(--color-yellow-400);
-  --color-link: var(--color-blue-700);
-  --color-d-link: var(--color-sky-400);
+  --font-title:
+    'Inter-Variable', 'Arial', 'Helvetica Neue', 'noto-sans-jp-for-title',
+    'Noto Sans JP', 'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN',
+    'Hiragino Sans', sans-serif, 'Segoe UI', 'Yu Gothic UI', system-ui;
+
+  --color-body: light-dark(var(--color-slate-100), var(--color-slate-900));
+  --color-main: Canvas;
+  --color-txt: CanvasText;
+  --color-txt-inv: Canvas;
+  --color-accent: light-dark(var(--color-sky-800), var(--color-sky-300));
+  --color-border: light-dark(hsl(0 0 0 / 15%), hsl(0 0 100 / 15%));
+  --color-border-dark: light-dark(hsl(0 0 0 / 40%), hsl(0 0 100 / 30%));
+  --color-caution: light-dark(var(--color-red-600), var(--color-yellow-400));
+  --color-link: light-dark(var(--color-blue-700), #40ff40);
 
   --m-paragraph: 0.75rem;
   --m-heading: 3rem;
   --m-figure: 2rem;
-  --w-sidebar-min: 16rem;
-  --w-main-max: 96rem;
-  --h-header: 10rem;
-  --base-area: 'header header' 'sidebar main';
-  --base-cols: minmax(min(var(--w-sidebar-min), 30%), 1fr)
-    minmax(0, var(--w-main-max));
-  --base-rows: auto 1fr;
+
+  --spacing-paragraph: 0.75rem;
+  --spacing-heading: 3rem;
+  --spacing-figure: 2rem;
+  --spacing-header: 10rem;
 }
 
 @utility user-select-* {
@@ -72,92 +78,90 @@
   }
 }
 
-@utility ctext-* {
-  color: --value(--color-*);
-
-  @media (prefers-color-scheme: dark) {
-    color: --value(--color-d- *);
-  }
-}
-
-@utility cbg-* {
-  background-color: --value(--color-*);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: --value(--color-d- *);
-  }
-}
-
-@utility gbg-* {
-  background-image: --value(--grad-*);
-
-  @media (prefers-color-scheme: dark) {
-    background-image: --value(--grad-d- *);
-  }
-}
-
-@utility cborder-* {
-  border-color: --value(--color-*);
-
-  @media (prefers-color-scheme: dark) {
-    border-color: --value(--color-d- *);
-  }
-}
-
 @layer base {
-  :is(html, :root) {
-    @apply font-sans max-sm:text-sm hyphens-auto wrap-anywhere;
+  :root {
+    @apply font-sans max-sm:text-sm hyphens-auto wrap-anywhere scheme-light-dark;
     font-optical-sizing: auto;
     line-break: strict;
+    -webkit-tap-highlight-color: revert;
+    text-spacing-trim: trim-start;
+    text-autospace: normal;
+    scrollbar-gutter: stable;
   }
 
-  :not(html, body, pre, code, input, textarea) {
-    @apply font-[inherit];
+  [lang] {
+    word-break: normal;
+  }
+
+  @supports (word-break: auto-phrase) {
+    @media (width > 40rem) {
+      [lang^='ja'] {
+        word-break: auto-phrase;
+        text-align: justify;
+      }
+    }
   }
 
   body {
-    @apply max-lg:flow-root lg:grid cbg-body ctext-txt grid-cols-(--base-cols) grid-rows-(--base-rows);
-    grid-template-areas: var(--base-area);
+    @apply max-lg:flow-root lg:grid bg-body text-txt;
+    --side-min: 16rem;
+    --main-max: 88rem;
+    grid-template-areas:
+      'h h'
+      'l m'
+      'f f';
+
+    grid-template-columns:
+      minmax(min(var(--side-min), 100%), 1fr)
+      minmax(0, var(--main-max));
+
+    grid-template-rows: auto 1fr auto;
   }
 
   header {
-    grid-area: header;
-    @apply grid place-content-center h-(--h-header);
+    grid-area: h;
+    @apply grid place-content-center block-header;
   }
 
-  aside {
-    grid-area: sidebar;
-    @apply max-lg:hidden max-w-full;
+  .lside {
+    grid-area: l;
+    @apply max-lg:hidden lg:flow-root;
   }
 
   main {
-    @apply flow-root min-h-lvh cbg-main px-3 max-w-full;
-    grid-area: main;
+    @apply flow-root min-block-lvh bg-main px-3 pbe-36;
+    grid-area: m;
   }
 
   input:is([type='text'], [type='url'], [type='number']),
   textarea {
-    @apply font-mono rounded cborder-border px-1;
+    @apply font-mono rounded border-border px-1;
   }
 
-  :where(:not(li)) > :is(p, pre, ul, ol) {
-    @apply mt-(--m-paragraph);
+  :not(li) > :where(p, pre, ul, ol) {
+    @apply mbs-paragraph;
   }
 
-  :is(h2, h3, h4, h5, h6) {
-    @apply mt-(--m-heading) ctext-accent;
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply mbs-heading text-accent;
   }
 
-  :is(h2, h3, h4) {
+  h2,
+  h3,
+  h4 {
     @apply font-normal;
   }
 
   #title {
-    @apply text-4xl font-extralight text-balance text-center;
+    @apply text-4xl xl:text-5xl font-extralight text-balance text-center font-title;
   }
 
   h2 {
-    @apply text-3xl ps-1 pb-1 border-b cborder-border;
+    @apply text-3xl ps-1 pbe-1 border-be border-border;
   }
 
   h3 {
@@ -168,33 +172,30 @@
     @apply text-xl;
   }
 
-  :is(h5, h6) {
+  h5,
+  h6 {
     @apply text-base font-semibold;
   }
 
   a {
-    @apply ctext-link any-hover:underline;
+    @apply text-link any-hover:underline;
   }
 
   img,
   .table-container {
-    @apply mt-(--m-figure);
+    @apply my-figure;
   }
 
   img {
-    @apply mx-auto w-max max-w-full;
+    @apply mx-auto inline-max max-inline-full;
   }
 
-  :is(ul, ol) {
-    @apply ps-7;
+  :not(li) > :where(ul, ol) {
+    @apply ms-7;
   }
 
-  li > :is(ul, ol) {
-    @apply ps-4;
-  }
-
-  li > p {
-    @apply mt-0;
+  li > :where(ul, ol) {
+    @apply ms-4;
   }
 
   ul {
@@ -206,27 +207,29 @@
   }
 
   table {
-    @apply whitespace-nowrap w-max max-w-full me-auto;
+    @apply whitespace-nowrap inline-max max-inline-full me-auto;
 
     :where(td, th) {
       @apply px-2 py-1;
     }
 
     :where(thead tr:last-child) {
-      @apply border-b-3 border-double cborder-border-dark;
+      @apply border-be-3 border-double border-border-dark;
     }
 
     :where(tbody tr:not(:last-child)) {
-      @apply border-b cborder-border;
+      @apply border-be border-border;
     }
   }
 
   .table-container:has(> table) {
-    @apply overflow-x-auto my-(--m-figure);
+    @apply overflow-x-auto my-figure;
     scrollbar-width: thin;
   }
 
-  :is(b, strong, th) {
+  b,
+  strong,
+  th {
     @apply font-semibold;
   }
 }
