@@ -16,12 +16,12 @@
   --font-sans:
     'Inter-Variable', 'Arial', 'Helvetica Neue', 'noto-sans-jp',
     'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif,
-    'Segoe UI', 'Yu Gothic UI', system-ui;
+    'Segoe UI', 'Yu Gothic UI';
 
   --font-title:
     'Inter-Variable', 'Arial', 'Helvetica Neue', 'noto-sans-jp-for-title',
     'Noto Sans JP', 'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN',
-    'Hiragino Sans', sans-serif, 'Segoe UI', 'Yu Gothic UI', system-ui;
+    'Hiragino Sans', sans-serif, 'Segoe UI', 'Yu Gothic UI';
 
   --color-body: light-dark(var(--color-slate-100), var(--color-slate-900));
   --color-main: Canvas;
@@ -222,6 +222,10 @@
 
     :where(tbody tr:not(:last-child)) {
       @apply border-be border-border;
+    }
+
+    :where(th) {
+      @apply text-center;
     }
   }
 
