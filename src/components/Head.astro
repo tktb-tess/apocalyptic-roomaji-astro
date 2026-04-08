@@ -1,0 +1,34 @@
+---
+import OGP from './OGP.astro';
+
+interface Props {
+  title: string;
+  path: string;
+  description?: string;
+}
+
+const { title, path, description } = Astro.props;
+---
+
+<head>
+  <meta charset='utf-8' />
+  <link rel='icon' type='image/vnd.microsoft.icon' href='/favicon.ico' />
+  <meta name='viewport' content='width=device-width,initial-scale=1' />
+  <link
+    rel='stylesheet'
+    href='https://api.tktb-tess.dev/fonts/Inter/font-face.css'
+    crossorigin='anonymous'
+  />
+  <link rel='preconnect' href='https://fonts.googleapis.com' />
+  <link
+    rel='preconnect'
+    href='https://fonts.gstatic.com'
+    crossorigin='anonymous'
+  />
+  <link
+    href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap'
+    rel='stylesheet'
+  />
+  <meta name='generator' content={Astro.generator} />
+  <OGP {title} {path} {description} />
+</head>

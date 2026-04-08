@@ -1,48 +1,29 @@
 ---
 import '../styles/global.css';
 import type { MarkdownLayoutProps } from 'astro';
-import OGP from './OGP.astro';
+import Head from '../components/Head.astro';
 
 type Props = MarkdownLayoutProps<{
   title: string;
   desc: string;
 }>;
-const { frontmatter, url = '' } = Astro.props;
-const { desc, title } = frontmatter;
+
+const { desc, title } = Astro.props.frontmatter;
+const path = Astro.originPathname;
 ---
 
 <html lang='ja'>
-  <head>
-    <meta charset='utf-8' />
-    <link rel='icon' type='image/vnd.microsoft.icon' href='/favicon.ico' />
-    <meta name='viewport' content='width=device-width,initial-scale=1' />
-    <link
-      rel='stylesheet'
-      href='https://api.tktb-tess.dev/fonts/Inter/font-face.css'
-      crossorigin='anonymous'
-    />
-    <link rel='preconnect' href='https://fonts.googleapis.com' />
-    <link
-      rel='preconnect'
-      href='https://fonts.gstatic.com'
-      crossorigin='anonymous'
-    />
-    <link
-      href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap'
-      rel='stylesheet'
-    />
-    <meta name='generator' content={Astro.generator} />
-    <OGP {title} path={url} description={desc} />
-  </head>
+  <Head {title} {path} description={desc} />
   <body>
     <header>
       <h1 id='title'>
         {title}
       </h1>
     </header>
-    <aside></aside>
+    <aside class="lside"></aside>
     <main>
       <slot />
     </main>
+    <aside class="rside"></aside>
   </body>
 </html>

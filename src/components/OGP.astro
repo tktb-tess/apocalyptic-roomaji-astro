@@ -1,0 +1,27 @@
+---
+interface Props {
+  path: string;
+  title: string;
+  description?: string;
+}
+
+const { path, title, description = title } = Astro.props;
+const baseURL = `https://shuuro.tktb-tess.dev`;
+const linkCardURL = new URL('/link-card.jpg', baseURL).href;
+const currentURL = new URL(path, baseURL).href;
+const ogTitle = path === '/' ? title : `${title} | 終末式ローマ字`;
+---
+
+<!-- OGP -->
+<meta property='og:title' content={ogTitle} />
+<meta name='twitter:title' content={ogTitle} />
+<meta name='description' content={description} />
+<meta property='og:description' content={description} />
+<meta name='twitter:description' content={description} />
+<meta property='og:type' content='website' />
+<meta name='twitter:image' content={linkCardURL} />
+<meta property='og:image' content={linkCardURL} />
+<meta name='twitter:card' content='summary' />
+<meta property='og:site_name' content='終末式ローマ字' />
+<meta property='og:url' content={currentURL} />
+<title>{ogTitle}</title>
