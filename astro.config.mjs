@@ -19,7 +19,7 @@ export default defineConfig({
     remarkRehype: {
       handlers: {
         table: H.tableHandler,
-        textDirective: H.textDirectiveHandler,
+        textDirective: H.tdHandler,
       },
     },
   },

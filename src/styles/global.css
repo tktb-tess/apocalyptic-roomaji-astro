@@ -16,12 +16,12 @@
   --font-sans:
     'Inter-Variable', 'Arial', 'Helvetica Neue', 'noto-sans-jp',
     'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif,
-    'Segoe UI', 'Yu Gothic UI', system-ui;
+    'Segoe UI', 'Yu Gothic UI';
 
   --font-title:
     'Inter-Variable', 'Arial', 'Helvetica Neue', 'noto-sans-jp-for-title',
     'Noto Sans JP', 'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN',
-    'Hiragino Sans', sans-serif, 'Segoe UI', 'Yu Gothic UI', system-ui;
+    'Hiragino Sans', sans-serif, 'Segoe UI', 'Yu Gothic UI';
 
   --color-body: light-dark(var(--color-slate-100), var(--color-slate-900));
   --color-main: Canvas;
@@ -32,10 +32,6 @@
   --color-border-dark: light-dark(hsl(0 0 0 / 40%), hsl(0 0 100 / 30%));
   --color-caution: light-dark(var(--color-red-600), var(--color-yellow-400));
   --color-link: light-dark(var(--color-blue-700), #40ff40);
-
-  --m-paragraph: 0.75rem;
-  --m-heading: 3rem;
-  --m-figure: 2rem;
 
   --spacing-paragraph: 0.75rem;
   --spacing-heading: 3rem;
@@ -61,6 +57,11 @@
     auto-fill,
     minmax(min(calc(var(--spacing) * --value(integer)), 100%), 1fr)
   );
+
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(--value([*]), 100%), 1fr)
+  );
 }
 
 @utility grid-auto-fit-* {
@@ -68,6 +69,8 @@
     auto-fit,
     minmax(min(calc(var(--spacing) * --value(integer)), 100%), 1fr)
   );
+
+  grid-template-columns: repeat(auto-fit, minmax(min(--value([*]), 100%), 1fr));
 }
 
 @custom-variant any-hover {
@@ -219,6 +222,10 @@
 
     :where(tbody tr:not(:last-child)) {
       @apply border-be border-border;
+    }
+
+    :where(th) {
+      @apply text-center;
     }
   }
 
