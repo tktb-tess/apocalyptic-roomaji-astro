@@ -33,10 +33,6 @@
   --color-caution: light-dark(var(--color-red-600), var(--color-yellow-400));
   --color-link: light-dark(var(--color-blue-700), #40ff40);
 
-  --m-paragraph: 0.75rem;
-  --m-heading: 3rem;
-  --m-figure: 2rem;
-
   --spacing-paragraph: 0.75rem;
   --spacing-heading: 3rem;
   --spacing-figure: 2rem;
@@ -61,6 +57,11 @@
     auto-fill,
     minmax(min(calc(var(--spacing) * --value(integer)), 100%), 1fr)
   );
+
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(--value([*]), 100%), 1fr)
+  );
 }
 
 @utility grid-auto-fit-* {
@@ -68,6 +69,8 @@
     auto-fit,
     minmax(min(calc(var(--spacing) * --value(integer)), 100%), 1fr)
   );
+
+  grid-template-columns: repeat(auto-fit, minmax(min(--value([*]), 100%), 1fr));
 }
 
 @custom-variant any-hover {
