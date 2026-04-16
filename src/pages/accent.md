@@ -10,6 +10,8 @@ desc: あくせんと♡
 
 なおこのアクセント規則は[教育ローマ字](https://nihongotopics.github.io/Kyouro/Proposing%20a%20new%20romanization%20system%20of%20Japanese%20(book).pdf)の影響を強く受けている。というかほぼ同じである。
 
+## 目次
+
 ## 名詞
 
 最後のnFモーラがある母音に対し**鋭アクセント** (ˊ) を付与する。

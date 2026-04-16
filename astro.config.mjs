@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import remarkDirective from 'remark-directive';
+import remarkToc from 'remark-toc';
 import * as H from './plugin/handlers';
 
 // https://astro.build/config
@@ -11,11 +12,14 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  build: {
+    inlineStylesheets: 'never',
+  },
   server: {
     port: 8000,
   },
   markdown: {
-    remarkPlugins: [remarkDirective],
+    remarkPlugins: [remarkDirective, [remarkToc, { heading: '目次' }]],
     remarkRehype: {
       handlers: {
         table: H.tableHandler,
