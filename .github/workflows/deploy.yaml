@@ -32,10 +32,10 @@ jobs:
           node-version: 24
           cache: pnpm
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: pnpm i --frozen-lockfile
 
-      - name: Build Astro
+      - name: Build
         run: pnpm run build
 
       - name: Configure GitHub Pages
