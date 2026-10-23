@@ -1,9 +1,9 @@
-onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
-  - esbuild
-  - sharp
 
 minimumReleaseAge: 2880
 
 minimumReleaseAgeExclude:
   - '@tktb-tess/*'
+
+allowBuilds:
+  esbuild: true
+  sharp: true
